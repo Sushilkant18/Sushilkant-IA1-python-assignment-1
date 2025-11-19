@@ -1,0 +1,30 @@
+
+'''A company needs a program that reads employee names and their basic salary.
+The program should: Calculate total salary including HRA (20%) and DA (10%).
+Stop taking input when the user types "stop". Display each employee’s totat
+salary at the end.Concepts: while loop, arithmetic operations, condition check,
+formatted output'''
+
+
+employees = []   
+
+while True:
+    name = input("Enter employee name (or type 'stop' to finish): ")
+
+    if name.lower() == "stop":
+        break
+
+    # Read salary
+    salary = float(input("Enter basic salary: "))
+
+    # Calculate allowances
+    hra = 0.20 * salary
+    da = 0.10 * salary
+    total_salary = salary + hra + da
+
+    # Store result
+    employees.append((name, total_salary))
+
+print("\n--- Employee Salary Details ---")
+for name, total in employees:
+    print(f"Employee: {name} | Total Salary: ₹{total:.2f}")
