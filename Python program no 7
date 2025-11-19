@@ -1,0 +1,52 @@
+'''Given list of items purchased in a file display the following: 
+No of items purchased, No of free items,Amount to pay, Discount given, 
+Final amount paid
+Concepts: files, dictonary
+
+Sample output for purchase-1.txt file:
+No of items purchased: 5 
+No of free items: 2
+Amount to pay: 485
+Discount given: 80
+Final amount paid: 405'''
+
+
+def process_purchase(filename):
+    data = {
+        "total_items": 0,
+        "free_items": 0,
+        "amount_to_pay": 0,
+        "discount_given": 0
+    }
+
+    with open(filename, "r") as file:
+        for line in file:
+            item, price, qty, free, discount = line.split()
+            
+            price = float(price)
+            qty = int(qty)
+            free = int(free)
+            discount = float(discount)
+
+            # Update counts
+            data["total_items"] += qty
+            data["free_items"] += free
+
+            # Calculate amount
+            data["amount_to_pay"] += price * qty
+            data["discount_given"] += discount
+
+    # Final amount after discount
+    final_amount = data["amount_to_pay"] - data["discount_given"]
+
+    
+    print("No of items purchased:", data["total_items"])
+    print("No of free items:", data["free_items"])
+    print("Amount to pay:", int(data["amount_to_pay"]))
+    print("Discount given:", int(data["discount_given"]))
+    print("Final amount paid:", int(final_amount))
+
+
+# Test the function
+process_purchase("purchase-1.txt")
+
