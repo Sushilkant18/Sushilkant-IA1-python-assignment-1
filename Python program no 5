@@ -1,0 +1,46 @@
+'''Design a module math_utils.py with functions:
+factorial(n)
+is_prime(n)
+gcd(a,b)
+Include exception handling for invalid or negative inputs. 
+Import and test these functions from another script.
+Concepts: Loops, recursion, functions, input validation
+
+# math_utils.py
+# Custom math utility functions with input validation and exception handling
+
+def factorial(n):
+    """Calculates factorial using recursion."""
+    if not isinstance(n, int):
+        raise TypeError("Factorial is only defined for integers.")
+    if n < 0:
+        raise ValueError("Factorial of a negative number is not allowed.")
+    
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+
+def is_prime(n):
+    """Checks if a number is prime."""
+    if not isinstance(n, int):
+        raise TypeError("Prime check is only defined for integers.")
+    if n < 2:
+        return False
+    
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+def gcd(a, b):
+    """Computes GCD using the Euclidean algorithm."""
+    if not (isinstance(a, int) and isinstance(b, int)):
+        raise TypeError("GCD is only defined for integers.")
+    if a < 0 or b < 0:
+        raise ValueError("GCD does not support negative numbers.")
+    
+    while b != 0:
+        a, b = b, a % b
+    return a
